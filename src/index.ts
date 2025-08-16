@@ -1917,6 +1917,17 @@ async function callPlaneAPI(
   const baseUrl = `https://api.plane.so/api/v1/workspaces/${PLANE_WORKSPACE_SLUG}`;
   const url = `${baseUrl}${endpoint}`;
 
+  // Debug logging for cycle and module operations
+  if (endpoint.includes('/cycles/') && method === 'POST') {
+    console.error(`DEBUG: Cycle creation URL: ${url}`);
+    console.error(`DEBUG: Cycle creation body:`, JSON.stringify(body, null, 2));
+  }
+  if (endpoint.includes('/modules/')) {
+    console.error(`DEBUG: Module operation URL: ${url}`);
+    console.error(`DEBUG: Module operation method: ${method}`);
+    if (body) console.error(`DEBUG: Module operation body:`, JSON.stringify(body, null, 2));
+  }
+
   const options: RequestInit = {
     method,
     headers: {
@@ -2461,7 +2472,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error("Project ID is required");
         }
         const { project_id, ...cycleData } = args;
-        const cycle = await callPlaneAPI(`/projects/${project_id}/cycles/`, "POST", cycleData);
+        // Include project_id in request body as some cycle APIs require it
+        const requestBody = { ...cycleData, project: project_id };
+        const cycle = await callPlaneAPI(`/projects/${project_id}/cycles/`, "POST", requestBody);
         return {
           content: [{ type: "text", text: JSON.stringify(cycle, null, 2) }],
           isError: false,

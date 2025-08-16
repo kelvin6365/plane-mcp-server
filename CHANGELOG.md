@@ -5,6 +5,18 @@ All notable changes to the Plane MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2025-08-16
+
+### Fixed
+- **create-cycle tool**: Fixed "Project ID is required" error by including project field in request body
+  - The Plane API for cycles requires the `project` field to be included in the request body in addition to the URL path
+  - Updated implementation to include `project: project_id` in the request body for cycle creation
+  - This is different from module creation which only requires project_id in the URL path
+  - Resolves the second API error after the `owned_by` field was added
+
+### Development
+- Added debug logging for cycle creation to help troubleshoot API issues
+
 ## [0.4.1] - 2025-08-16
 
 ### Fixed
