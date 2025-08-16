@@ -575,6 +575,7 @@ Creates a new cycle in a project.
 Parameters:
 - `project_id`: ID of the project where the cycle should be created
 - `name`: Name of the cycle
+- `owned_by`: ID of the user who will own this cycle
 - `description` (optional): Description of the cycle
 - `start_date` (optional): Start date of the cycle (YYYY-MM-DD format)
 - `end_date` (optional): End date of the cycle (YYYY-MM-DD format)
@@ -582,8 +583,9 @@ Parameters:
 Example:
 ```json
 {
-  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "project_id": "12345678-1234-5678-9abc-123456789def",
   "name": "Q1 2024 Development Cycle",
+  "owned_by": "87654321-4321-8765-cba9-987654321fed",
   "description": "First quarter development cycle",
   "start_date": "2024-01-01",
   "end_date": "2024-03-31"

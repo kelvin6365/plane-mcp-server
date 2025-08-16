@@ -590,8 +590,12 @@ const CREATE_CYCLE_TOOL: Tool = {
         type: "string",
         description: "End date of the cycle (YYYY-MM-DD format, optional)",
       },
+      owned_by: {
+        type: "string",
+        description: "ID of the user who will own this cycle",
+      },
     },
-    required: ["project_id", "name"],
+    required: ["project_id", "name", "owned_by"],
   },
 };
 

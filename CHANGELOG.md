@@ -5,6 +5,18 @@ All notable changes to the Plane MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2025-08-16
+
+### Fixed
+- **create-cycle tool**: Added missing required `owned_by` parameter to fix Plane API 400 error
+  - The Plane API requires an `owned_by` field when creating cycles
+  - Updated tool schema to include `owned_by` as a required parameter
+  - Updated README documentation with correct parameters and example
+
+### Documentation
+- Updated `create-cycle` tool documentation with required `owned_by` parameter
+- Replaced example UUIDs with generic random IDs for security
+
 ## [0.4.0] - 2025-01-16
 
 ### Added
