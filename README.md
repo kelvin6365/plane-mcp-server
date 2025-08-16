@@ -442,6 +442,16 @@ Parameters:
 - `lead` (optional): Updated user ID of the module lead
 - `members` (optional): Updated array of user IDs for module members
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "module_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "status": "in-progress",
+  "target_date": "2024-01-21"
+}
+```
+
 #### delete-module
 
 Deletes a module from a project.
@@ -450,6 +460,14 @@ Parameters:
 - `project_id`: ID of the project containing the module
 - `module_id`: ID of the module to delete
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "module_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
 #### list-module-issues
 
 Lists all issues in a specific module.
@@ -457,6 +475,14 @@ Lists all issues in a specific module.
 Parameters:
 - `project_id`: ID of the project containing the module
 - `module_id`: ID of the module to get issues from
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "module_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### add-issues-to-module
 
@@ -485,6 +511,15 @@ Parameters:
 - `module_id`: ID of the module to remove issue from
 - `issue_id`: ID of the issue to remove from the module
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "module_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "issue_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
 ### Cycle Management Tools
 
 #### list-cycles
@@ -494,6 +529,13 @@ Lists all cycles in a project.
 Parameters:
 - `project_id`: ID of the project to get cycles from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+}
+```
+
 #### get-cycle
 
 Gets detailed information about a specific cycle.
@@ -501,6 +543,14 @@ Gets detailed information about a specific cycle.
 Parameters:
 - `project_id`: ID of the project containing the cycle
 - `cycle_id`: ID of the cycle to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### create-cycle
 
@@ -528,9 +578,39 @@ Example:
 
 Updates an existing cycle in a project.
 
+Parameters:
+- `project_id`: ID of the project containing the cycle
+- `cycle_id`: ID of the cycle to update
+- `name` (optional): Updated name of the cycle
+- `description` (optional): Updated description of the cycle
+- `start_date` (optional): Updated start date of the cycle (YYYY-MM-DD format)
+- `end_date` (optional): Updated end date of the cycle (YYYY-MM-DD format)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "Q1 2024 Development Cycle - Updated",
+  "end_date": "2024-04-15"
+}
+```
+
 #### delete-cycle
 
 Deletes a cycle from a project.
+
+Parameters:
+- `project_id`: ID of the project containing the cycle
+- `cycle_id`: ID of the cycle to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### list-cycle-issues
 
@@ -539,6 +619,14 @@ Lists all issues in a specific cycle.
 Parameters:
 - `project_id`: ID of the project containing the cycle
 - `cycle_id`: ID of the cycle to get issues from
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### add-issues-to-cycle
 
@@ -549,6 +637,15 @@ Parameters:
 - `cycle_id`: ID of the cycle to add issues to
 - `issues`: Array of issue IDs to add to the cycle
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "issues": ["issue-id-1", "issue-id-2", "issue-id-3"]
+}
+```
+
 #### remove-issue-from-cycle
 
 Removes an issue from a cycle.
@@ -557,6 +654,15 @@ Parameters:
 - `project_id`: ID of the project containing the cycle
 - `cycle_id`: ID of the cycle to remove issue from
 - `issue_id`: ID of the issue to remove from the cycle
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "issue_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 ### Label Management Tools
 
@@ -567,6 +673,13 @@ Lists all labels in a project.
 Parameters:
 - `project_id`: ID of the project to get labels from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+}
+```
+
 #### get-label
 
 Gets detailed information about a specific label.
@@ -574,6 +687,14 @@ Gets detailed information about a specific label.
 Parameters:
 - `project_id`: ID of the project containing the label
 - `label_id`: ID of the label to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "label_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### create-label
 
@@ -599,9 +720,39 @@ Example:
 
 Updates an existing label in a project.
 
+Parameters:
+- `project_id`: ID of the project containing the label
+- `label_id`: ID of the label to update
+- `name` (optional): Updated name of the label
+- `description` (optional): Updated description of the label
+- `color` (optional): Updated color code for the label (e.g., "#ff0000")
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "label_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "Critical Bug",
+  "color": "#ff0000",
+  "description": "Issues that require immediate attention"
+}
+```
+
 #### delete-label
 
 Deletes a label from a project.
+
+Parameters:
+- `project_id`: ID of the project containing the label
+- `label_id`: ID of the label to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "label_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 ### Team & Workspace Management Tools
 
@@ -610,6 +761,11 @@ Deletes a label from a project.
 Lists all members in the workspace.
 
 Parameters: None
+
+Example:
+```json
+{}
+```
 
 #### list-project-members
 
@@ -652,6 +808,15 @@ Parameters:
 - `issue_id`: ID of the issue containing the comment
 - `comment_id`: ID of the comment to retrieve
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "comment_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
 #### create-issue-comment
 
 Creates a new comment on an issue.
@@ -680,6 +845,16 @@ Parameters:
 - `comment_id`: ID of the comment to update
 - `comment`: The updated comment text
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "comment_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "comment": "Updated: This looks good after the latest changes, ready to merge."
+}
+```
+
 #### delete-issue-comment
 
 Deletes a comment from an issue.
@@ -688,6 +863,15 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue containing the comment
 - `comment_id`: ID of the comment to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "comment_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 ### Issue Links Tools
 
@@ -699,6 +883,14 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue to get links from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
 #### get-issue-link
 
 Gets detailed information about a specific issue link.
@@ -707,6 +899,15 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue containing the link
 - `link_id`: ID of the link to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "link_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 #### create-issue-link
 
@@ -739,6 +940,17 @@ Parameters:
 - `title` (optional): Updated title/name for the link
 - `url` (optional): Updated URL
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "link_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "title": "Updated Documentation Link",
+  "url": "https://docs.example.com/updated-section"
+}
+```
+
 #### delete-issue-link
 
 Deletes an external link from an issue.
@@ -747,6 +959,15 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue containing the link
 - `link_id`: ID of the link to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "link_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 ### Issue Attachments Tools
 
@@ -757,6 +978,14 @@ Lists all file attachments for an issue.
 Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue to get attachments from
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### get-issue-attachment-upload-url
 
@@ -790,6 +1019,14 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue to get activities from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
 #### get-issue-activity
 
 Gets detailed information about a specific issue activity.
@@ -798,6 +1035,15 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue containing the activity
 - `activity_id`: ID of the activity to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "activity_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 ### Worklogs (Time Tracking) Tools
 
@@ -808,6 +1054,14 @@ Lists all time logs for a specific issue.
 Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue to get worklogs from
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### get-project-total-worklogs
 
@@ -854,6 +1108,17 @@ Parameters:
 - `duration` (optional): Updated time logged in hours
 - `description` (optional): Updated description of the work done
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "worklog_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "duration": 4.0,
+  "description": "Fixed critical bug and updated documentation"
+}
+```
+
 #### delete-issue-worklog
 
 Deletes a worklog entry from an issue.
@@ -862,6 +1127,15 @@ Parameters:
 - `project_id`: ID of the project containing the issue
 - `issue_id`: ID of the issue containing the worklog
 - `worklog_id`: ID of the worklog to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "worklog_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
 
 ### Issue Types Tools
 
@@ -872,6 +1146,13 @@ Lists all custom issue types in a project.
 Parameters:
 - `project_id`: ID of the project to get issue types from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+}
+```
+
 #### get-issue-type
 
 Gets detailed information about a specific issue type.
@@ -879,6 +1160,14 @@ Gets detailed information about a specific issue type.
 Parameters:
 - `project_id`: ID of the project containing the issue type
 - `type_id`: ID of the issue type to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### create-issue-type
 
@@ -908,6 +1197,16 @@ Parameters:
 - `name` (optional): Updated name of the issue type
 - `description` (optional): Updated description
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "Major Epic",
+  "description": "Large feature spanning multiple quarters"
+}
+```
+
 #### delete-issue-type
 
 Deletes an issue type from a project.
@@ -915,6 +1214,14 @@ Deletes an issue type from a project.
 Parameters:
 - `project_id`: ID of the project containing the issue type
 - `type_id`: ID of the issue type to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 ### Intake Issues Tools
 
@@ -925,6 +1232,13 @@ Lists all intake/inbox issues in a project.
 Parameters:
 - `project_id`: ID of the project to get intake issues from
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+}
+```
+
 #### get-intake-issue
 
 Gets detailed information about a specific intake issue.
@@ -932,6 +1246,14 @@ Gets detailed information about a specific intake issue.
 Parameters:
 - `project_id`: ID of the project containing the intake issue
 - `issue_id`: ID of the intake issue to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 #### create-intake-issue
 
@@ -964,6 +1286,17 @@ Parameters:
 - `description_html` (optional): Updated HTML description
 - `priority` (optional): Updated priority
 
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "Updated: Multiple users experiencing login issues on mobile app",
+  "priority": "urgent",
+  "description_html": "<p>Updated: Now affecting Android users as well as iOS. Version 2.1.3 and 2.1.4</p>"
+}
+```
+
 #### delete-intake-issue
 
 Deletes an intake issue.
@@ -971,6 +1304,14 @@ Deletes an intake issue.
 Parameters:
 - `project_id`: ID of the project containing the intake issue
 - `issue_id`: ID of the intake issue to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
 
 ## Development
 
