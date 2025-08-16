@@ -16,8 +16,14 @@ A Model Context Protocol (MCP) server that enables LLMs to interact with [Plane.
 
 ## Features
 
+### Pagination Support
+- **Cursor-based pagination** for all list operations (projects, issues, modules, cycles, labels)
+- Configurable page sizes up to 100 items per page
+- Navigation through large datasets with next/previous cursors
+- Consistent pagination across all list tools
+
 ### Project Management
-- List all projects in your Plane workspace
+- List all projects in your Plane workspace with pagination
 - Get detailed information about specific projects
 
 ### Issue Management
@@ -179,14 +185,26 @@ After obtaining these credentials, use them in your Claude configuration as show
 
 ### list-projects
 
-Lists all projects in your Plane workspace.
+Lists all projects in your Plane workspace with pagination support.
 
-Parameters: None
+Parameters:
+- `per_page` (optional): Number of items per page (default: 100, max: 100)
+- `cursor` (optional): Pagination cursor in format 'value:offset:is_prev'
 
 Example:
 
 ```json
-{}
+{
+  "per_page": 50
+}
+```
+
+Example with pagination:
+```json
+{
+  "per_page": 25,
+  "cursor": "project_name:25:false"
+}
 ```
 
 ### get-project
@@ -236,7 +254,7 @@ Example:
 
 ### list-issues
 
-Lists issues from a specified project with optional filtering.
+Lists issues from a specified project with optional filtering and pagination.
 
 Parameters:
 
@@ -244,15 +262,34 @@ Parameters:
 - `state_id` (optional): Filter by state ID
 - `priority` (optional): Filter by priority
 - `assignee_id` (optional): Filter by assignee ID
-- `limit` (optional): Maximum number of issues to return (default: 50)
+- `per_page` (optional): Number of items per page (default: 100, max: 100)
+- `cursor` (optional): Pagination cursor in format 'value:offset:is_prev'
 
-Example:
+Examples:
 
+Basic filtering:
 ```json
 {
   "project_id": "01abc123-4567-89de-0123-456789abcdef",
   "priority": "high",
-  "limit": 10
+  "per_page": 20
+}
+```
+
+With pagination (first page):
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 20
+}
+```
+
+With pagination (next page using cursor from previous response):
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 20,
+  "cursor": "20:1:0"
 }
 ```
 
@@ -399,15 +436,27 @@ Example:
 
 #### list-modules
 
-Lists all modules (sprints) in a project.
+Lists all modules (sprints) in a project with pagination support.
 
 Parameters:
 - `project_id`: ID of the project to get modules from
+- `per_page` (optional): Number of items per page (default: 100, max: 100)
+- `cursor` (optional): Pagination cursor in format 'value:offset:is_prev'
 
 Example:
 ```json
 {
-  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 50
+}
+```
+
+Example with pagination:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 25,
+  "cursor": "module_name:25:false"
 }
 ```
 
@@ -552,15 +601,27 @@ Example:
 
 #### list-cycles
 
-Lists all cycles in a project.
+Lists all cycles in a project with pagination support.
 
 Parameters:
 - `project_id`: ID of the project to get cycles from
+- `per_page` (optional): Number of items per page (default: 100, max: 100)
+- `cursor` (optional): Pagination cursor in format 'value:offset:is_prev'
 
 Example:
 ```json
 {
-  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 50
+}
+```
+
+Example with pagination:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 25,
+  "cursor": "cycle_name:25:false"
 }
 ```
 
@@ -698,15 +759,27 @@ Example:
 
 #### list-labels
 
-Lists all labels in a project.
+Lists all labels in a project with pagination support.
 
 Parameters:
 - `project_id`: ID of the project to get labels from
+- `per_page` (optional): Number of items per page (default: 100, max: 100)
+- `cursor` (optional): Pagination cursor in format 'value:offset:is_prev'
 
 Example:
 ```json
 {
-  "project_id": "01abc123-4567-89de-0123-456789abcdef"
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 50
+}
+```
+
+Example with pagination:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "per_page": 25,
+  "cursor": "label_name:25:false"
 }
 ```
 

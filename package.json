@@ -1,6 +1,6 @@
 {
   "name": "@disrex/plane-mcp-server",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Comprehensive MCP Server for Plane with 76 project management tools including custom properties, sub-issues, relations, and transfer operations",
   "license": "MIT",
   "author": "Disrex Group",

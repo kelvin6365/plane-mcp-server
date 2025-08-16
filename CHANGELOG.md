@@ -5,6 +5,27 @@ All notable changes to the Plane MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.4] - 2025-08-16
+
+### Added
+- **Pagination Support**: Implemented cursor-based pagination for all list operations
+  - Added `per_page` parameter (default: 100, max: 100) to all list tools
+  - Added `cursor` parameter for pagination navigation (format: 'value:offset:is_prev')
+  - Supported tools: `list-projects`, `list-issues`, `list-modules`, `list-cycles`, `list-labels`
+  - Follows Plane API pagination standards for efficient data retrieval
+
+### Enhanced  
+- **API Performance**: List operations now support efficient pagination for large datasets
+  - Default page size of 100 items with configurable limits
+  - Cursor-based navigation prevents performance issues with large result sets
+  - Maintains backward compatibility with existing implementations
+
+### Documentation
+- Updated all list tool examples to include pagination parameters
+- Added pagination usage examples for each list operation
+- Enhanced Features section with pagination support information
+- Provided cursor format documentation and usage patterns
+
 ## [0.4.3] - 2025-08-16
 
 ### Added

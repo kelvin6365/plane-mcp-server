@@ -29,10 +29,21 @@ if (!PLANE_WORKSPACE_SLUG) {
 // Define tools
 const LIST_PROJECTS_TOOL: Tool = {
   name: "list-projects",
-  description: "List all projects in the workspace",
+  description: "List all projects in the workspace with optional pagination",
   inputSchema: {
     type: "object",
-    properties: {},
+    properties: {
+      per_page: {
+        type: "number",
+        description: "Number of items per page (default: 100, max: 100)",
+        minimum: 1,
+        maximum: 100,
+      },
+      cursor: {
+        type: "string",
+        description: "Pagination cursor in format 'value:offset:is_prev' (optional)",
+      },
+    },
     required: [],
   },
 };
@@ -121,9 +132,15 @@ const LIST_ISSUES_TOOL: Tool = {
         type: "string",
         description: "Filter by assignee ID (optional)",
       },
-      limit: {
+      per_page: {
         type: "number",
-        description: "Maximum number of issues to return (default: 50)",
+        description: "Number of items per page (default: 100, max: 100)",
+        minimum: 1,
+        maximum: 100,
+      },
+      cursor: {
+        type: "string",
+        description: "Pagination cursor in format 'value:offset:is_prev' (optional)",
       },
     },
     required: ["project_id"],
@@ -327,13 +344,23 @@ const DELETE_STATE_TOOL: Tool = {
 // Module (Sprint) Management Tools
 const LIST_MODULES_TOOL: Tool = {
   name: "list-modules",
-  description: "List all modules (sprints) in a project",
+  description: "List all modules (sprints) in a project with optional pagination",
   inputSchema: {
     type: "object",
     properties: {
       project_id: {
         type: "string",
         description: "ID of the project to get modules from",
+      },
+      per_page: {
+        type: "number",
+        description: "Number of items per page (default: 100, max: 100)",
+        minimum: 1,
+        maximum: 100,
+      },
+      cursor: {
+        type: "string",
+        description: "Pagination cursor in format 'value:offset:is_prev' (optional)",
       },
     },
     required: ["project_id"],
@@ -547,13 +574,23 @@ const REMOVE_ISSUE_FROM_MODULE_TOOL: Tool = {
 // Cycle Management Tools
 const LIST_CYCLES_TOOL: Tool = {
   name: "list-cycles",
-  description: "List all cycles in a project",
+  description: "List all cycles in a project with optional pagination",
   inputSchema: {
     type: "object",
     properties: {
       project_id: {
         type: "string",
         description: "ID of the project to get cycles from",
+      },
+      per_page: {
+        type: "number",
+        description: "Number of items per page (default: 100, max: 100)",
+        minimum: 1,
+        maximum: 100,
+      },
+      cursor: {
+        type: "string",
+        description: "Pagination cursor in format 'value:offset:is_prev' (optional)",
       },
     },
     required: ["project_id"],
@@ -739,13 +776,23 @@ const REMOVE_ISSUE_FROM_CYCLE_TOOL: Tool = {
 // Label Management Tools
 const LIST_LABELS_TOOL: Tool = {
   name: "list-labels",
-  description: "List all labels in a project",
+  description: "List all labels in a project with optional pagination",
   inputSchema: {
     type: "object",
     properties: {
       project_id: {
         type: "string",
         description: "ID of the project to get labels from",
+      },
+      per_page: {
+        type: "number",
+        description: "Number of items per page (default: 100, max: 100)",
+        minimum: 1,
+        maximum: 100,
+      },
+      cursor: {
+        type: "string",
+        description: "Pagination cursor in format 'value:offset:is_prev' (optional)",
       },
     },
     required: ["project_id"],
@@ -2124,7 +2171,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     switch (name) {
       case "list-projects": {
-        const projects = await callPlaneAPI("/projects/", "GET");
+        // Build query string for pagination parameters
+        const queryParams = args || {};
+        const queryString = Object.entries(queryParams)
+          .filter(([_, value]) => value !== undefined)
+          .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
+          .join("&");
+
+        const endpoint = `/projects/${queryString ? `?${queryString}` : ""}`;
+        const projects = await callPlaneAPI(endpoint, "GET");
         return {
           content: [{ type: "text", text: JSON.stringify(projects, null, 2) }],
           isError: false,
