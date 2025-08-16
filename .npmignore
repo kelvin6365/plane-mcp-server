@@ -1,0 +1,33 @@
+# Source files
+src/
+tsconfig.json
+
+# Development files
+node_modules/
+package-lock.json
+.git/
+.gitignore
+
+# Build artifacts that aren't needed
+*.tsbuildinfo
+
+# Development and CI files
+Dockerfile
+.github/
+.vscode/
+.idea/
+
+# Test files
+test/
+tests/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production

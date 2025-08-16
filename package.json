@@ -1,16 +1,42 @@
 {
-  "name": "plane-mcp-server",
-  "version": "0.1.0",
-  "description": "MCP Server for Plane",
+  "name": "@disrex/plane-mcp-server",
+  "version": "0.3.0",
+  "description": "Enhanced MCP Server for Plane with 63 comprehensive project management tools including comments, links, attachments, time tracking, and issue types",
   "license": "MIT",
-  "author": "Kelvin Kwong",
-  "homepage": "https://github.com/kelvin6365/plane-mcp-server",
-  "bugs": "https://github.com/kelvin6365/plane-mcp-server/issues",
+  "author": "Disrex Group",
+  "homepage": "https://github.com/disrex-group/plane-mcp-server",
+  "bugs": "https://github.com/disrex-group/plane-mcp-server/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/disrex-group/plane-mcp-server.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "plane",
+    "project-management",
+    "api",
+    "claude",
+    "llm",
+    "ai",
+    "sprint",
+    "cycle",
+    "labels",
+    "states",
+    "comments",
+    "attachments",
+    "time-tracking",
+    "worklogs",
+    "issue-types",
+    "intake",
+    "links"
+  ],
   "type": "module",
   "scripts": {
     "build": "tsc && shx chmod +x dist/*.js",
     "prepare": "npm run build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
@@ -26,6 +52,11 @@
   },
   "main": "dist/index.js",
   "files": [
-    "dist"
-  ]
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
