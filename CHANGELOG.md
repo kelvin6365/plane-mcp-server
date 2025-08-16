@@ -5,6 +5,26 @@ All notable changes to the Plane MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2025-08-16
+
+### Added
+- **Labels Support**: Added comprehensive label management for issues
+  - Added `labels` parameter to `create-issue` tool - accepts array of label IDs
+  - Added `labels` parameter to `update-issue` tool - accepts array of label IDs
+  - Updated documentation with examples showing label usage
+  - Labels parameter follows same array format as assignees parameter
+
+### Enhanced
+- **Project Badges**: Added comprehensive badge collection to README
+  - NPM version, MCP Catalog quality, license, CI status, and technology badges
+  - Added detailed documentation on creating custom badges
+  - Provided examples and resources for badge services (Shields.io, Badge Fury, etc.)
+
+### Documentation
+- Updated both create-issue and update-issue examples to include labels usage
+- Added comprehensive badge documentation section with creation instructions
+- Enhanced examples to demonstrate proper label ID array format
+
 ## [0.4.2] - 2025-08-16
 
 ### Fixed

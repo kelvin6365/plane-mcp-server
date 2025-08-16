@@ -1,5 +1,13 @@
 # Plane MCP Server
 
+[![npm version](https://badge.fury.io/js/@disrex%2Fplane-mcp-server.svg)](https://badge.fury.io/js/@disrex%2Fplane-mcp-server)
+[![Quality](https://www.archestra.ai/mcp-catalog/api/badge/quality/disrex-group/plane-mcp-server)](https://www.archestra.ai/mcp-catalog/server/plane-mcp-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js CI](https://github.com/disrex-group/plane-mcp-server/actions/workflows/nodejs-ci.yml/badge.svg)](https://github.com/disrex-group/plane-mcp-server/actions/workflows/nodejs-ci.yml)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
+[![Plane.so](https://img.shields.io/badge/Plane.so-Compatible-blue)](https://plane.so)
+[![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-green)](https://modelcontextprotocol.io)
+
 A Model Context Protocol (MCP) server that enables LLMs to interact with [Plane.so](https://plane.so), allowing them to manage projects and issues through Plane's API. Using this server, LLMs like Claude can directly interact with your project management workflows while maintaining user control and security.
 
 > **⚠️ Important:** This MCP server is designed specifically for **Plane Cloud** instances. It only works with workspaces hosted on `https://app.plane.so/workspace-slug`. If you're using a self-hosted Plane installation, this server will not be compatible.
@@ -209,8 +217,9 @@ Parameters:
 - `priority` (optional): Priority of the issue ("urgent", "high", "medium", "low", "none")
 - `state_id` (optional): ID of the state for this issue
 - `assignees` (optional): Array of user IDs to assign to this issue
+- `labels` (optional): Array of label IDs to assign to this issue
 
-> **Note:** The `assignees` parameter must be an array of user ID strings. Common errors include providing a dictionary/object instead of an array, or accidentally nesting the entire issue data inside the assignees field. The server will attempt to handle these cases, but it's best to use the correct format.
+> **Note:** The `assignees` and `labels` parameters must be arrays of ID strings. Common errors include providing a dictionary/object instead of an array, or accidentally nesting the entire issue data inside these fields. The server will attempt to handle these cases, but it's best to use the correct format.
 
 Example:
 
@@ -220,7 +229,8 @@ Example:
   "name": "Implement new feature",
   "description_html": "<p>We need to implement the new reporting feature</p>",
   "priority": "high",
-  "assignees": ["user-id-1", "user-id-2"]
+  "assignees": ["user-id-1", "user-id-2"],
+  "labels": ["446cf3ad-446e-4b7a-8706-14121a0338d7", "ab0c39d4-dcae-4ccd-971a-f4c66d1e7db7"]
 }
 ```
 
@@ -277,8 +287,9 @@ Parameters:
 - `priority` (optional): Updated priority of the issue
 - `state_id` (optional): Updated state ID of the issue
 - `assignees` (optional): Updated array of user IDs to assign to this issue
+- `labels` (optional): Updated array of label IDs to assign to this issue
 
-> **Note:** The `assignees` parameter must be an array of user ID strings, following the same format guidelines as the create-issue tool.
+> **Note:** The `assignees` and `labels` parameters must be arrays of ID strings, following the same format guidelines as the create-issue tool.
 
 Example:
 
@@ -287,7 +298,8 @@ Example:
   "project_id": "01abc123-4567-89de-0123-456789abcdef",
   "issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
   "priority": "urgent",
-  "description_html": "<p>Updated description with <strong>more details</strong></p>"
+  "description_html": "<p>Updated description with <strong>more details</strong></p>",
+  "labels": ["446cf3ad-446e-4b7a-8706-14121a0338d7", "7de2b3d1-ae1a-4651-a3df-717629d70c1a"]
 }
 ```
 
@@ -1670,6 +1682,67 @@ Claude will use the appropriate tools to interact with Plane while asking for yo
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## Badges
+
+This project uses several badges to provide quick information about status, quality, and compatibility:
+
+### Available Badges
+
+- **NPM Version**: Shows the latest published version on npm
+  ```markdown
+  [![npm version](https://badge.fury.io/js/@disrex%2Fplane-mcp-server.svg)](https://badge.fury.io/js/@disrex%2Fplane-mcp-server)
+  ```
+
+- **MCP Catalog Quality**: Quality score from the Archestra.ai MCP catalog
+  ```markdown
+  [![Quality](https://www.archestra.ai/mcp-catalog/api/badge/quality/disrex-group/plane-mcp-server)](https://www.archestra.ai/mcp-catalog/server/plane-mcp-server)
+  ```
+
+- **License**: MIT License badge
+  ```markdown
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  ```
+
+- **CI Status**: GitHub Actions workflow status
+  ```markdown
+  [![Node.js CI](https://github.com/disrex-group/plane-mcp-server/actions/workflows/nodejs-ci.yml/badge.svg)](https://github.com/disrex-group/plane-mcp-server/actions/workflows/nodejs-ci.yml)
+  ```
+
+- **TypeScript**: Technology badge
+  ```markdown
+  [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
+  ```
+
+- **Plane.so Compatibility**: Custom compatibility badge
+  ```markdown
+  [![Plane.so](https://img.shields.io/badge/Plane.so-Compatible-blue)](https://plane.so)
+  ```
+
+- **MCP Protocol**: Model Context Protocol badge
+  ```markdown
+  [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-green)](https://modelcontextprotocol.io)
+  ```
+
+### Creating Custom Badges
+
+You can create custom badges using [Shields.io](https://shields.io/):
+
+1. **Basic Format**: `https://img.shields.io/badge/{label}-{message}-{color}`
+2. **Dynamic Badges**: Use endpoints for live data (npm downloads, GitHub stars, etc.)
+3. **Style Options**: Add `?style=flat-square`, `?style=for-the-badge`, etc.
+
+Example custom badge:
+```markdown
+[![Custom Badge](https://img.shields.io/badge/Custom-Message-brightgreen)](https://your-link.com)
+```
+
+### Badge Services
+
+- **[Shields.io](https://shields.io/)**: The most comprehensive badge service
+- **[Badge Fury](https://badge.fury.io/)**: Specifically for package managers
+- **[Archestra.ai MCP Catalog](https://www.archestra.ai/mcp-catalog/)**: Quality badges for MCP servers
+- **GitHub Actions**: Automatic CI/CD status badges
 
 ## License
 

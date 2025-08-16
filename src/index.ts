@@ -86,6 +86,13 @@ const CREATE_ISSUE_TOOL: Tool = {
         },
         description: "Array of user IDs to assign to this issue (optional)",
       },
+      labels: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+        description: "Array of label IDs to assign to this issue (optional)",
+      },
     },
     required: ["project_id", "name"],
   },
@@ -181,6 +188,14 @@ const UPDATE_ISSUE_TOOL: Tool = {
         },
         description:
           "Updated array of user IDs to assign to this issue (optional)",
+      },
+      labels: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+        description:
+          "Updated array of label IDs to assign to this issue (optional)",
       },
     },
     required: ["project_id", "issue_id"],
