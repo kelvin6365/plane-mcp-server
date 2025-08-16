@@ -83,6 +83,22 @@ A Model Context Protocol (MCP) server that enables LLMs to interact with [Plane.
 - Handle intake/inbox issues for triage
 - Manage issue submissions before project assignment
 
+### Custom Issue Properties
+- Create and manage custom properties for issue types
+- Support for various property types (text, number, date, options, boolean)
+- Configure dropdown options for select properties
+- Set required fields and validation rules
+
+### Sub-issues & Relations
+- Create hierarchical issue structures with parent-child relationships
+- Convert existing issues to sub-issues
+- List and manage sub-issue trees
+- Convert sub-issues back to regular issues
+
+### Issue Transfer Operations
+- Transfer issues between cycles for better sprint management
+- Bulk move issues to different project phases
+
 ## Prerequisites
 
 - Node.js 22.x or higher
@@ -1310,6 +1326,267 @@ Example:
 {
   "project_id": "01abc123-4567-89de-0123-456789abcdef",
   "issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
+### list-issue-properties
+
+Lists all custom properties for a specific issue type.
+
+Parameters:
+- `project_id`: ID of the project
+- `type_id`: ID of the issue type to get properties for
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
+### get-issue-property
+
+Gets details of a specific issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `type_id`: ID of the issue type
+- `property_id`: ID of the property to retrieve
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
+### create-issue-property
+
+Creates a new custom property for an issue type.
+
+Parameters:
+- `project_id`: ID of the project
+- `type_id`: ID of the issue type
+- `name`: Internal name for the property
+- `display_name`: Display name for the property
+- `property_type`: Type of property (TEXT, NUMBER, DATE, OPTION, MULTI_OPTION, BOOLEAN)
+- `description`: Description of the property (optional)
+- `is_required`: Whether this property is required (optional)
+- `is_multi`: Whether multiple values are allowed (optional)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "severity",
+  "display_name": "Bug Severity",
+  "property_type": "OPTION",
+  "description": "Severity level of the bug",
+  "is_required": true,
+  "is_multi": false
+}
+```
+
+### update-issue-property
+
+Updates an existing issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `type_id`: ID of the issue type
+- `property_id`: ID of the property to update
+- `name`: Internal name for the property (optional)
+- `display_name`: Display name for the property (optional)
+- `description`: Description of the property (optional)
+- `is_required`: Whether this property is required (optional)
+- `is_multi`: Whether multiple values are allowed (optional)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "display_name": "Bug Severity Level",
+  "description": "Updated severity level description"
+}
+```
+
+### delete-issue-property
+
+Deletes an issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `type_id`: ID of the issue type
+- `property_id`: ID of the property to delete
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "type_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
+### list-issue-property-options
+
+Lists all options for a dropdown/select issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `property_id`: ID of the property to get options for
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
+### create-issue-property-option
+
+Creates a new option for a dropdown/select issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `property_id`: ID of the property to add option to
+- `name`: Name of the option
+- `description`: Description of the option (optional)
+- `sort_order`: Sort order for the option (optional)
+- `is_default`: Whether this is the default option (optional)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "name": "Critical",
+  "description": "Critical severity level",
+  "sort_order": 1,
+  "is_default": false
+}
+```
+
+### update-issue-property-option
+
+Updates an option for a dropdown/select issue property.
+
+Parameters:
+- `project_id`: ID of the project
+- `property_id`: ID of the property
+- `option_id`: ID of the option to update
+- `name`: Name of the option (optional)
+- `description`: Description of the option (optional)
+- `sort_order`: Sort order for the option (optional)
+- `is_default`: Whether this is the default option (optional)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "property_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "option_id": "01jkl012-3456-78mn-9012-opqrstuvwxyz",
+  "name": "High Priority",
+  "description": "High priority severity level"
+}
+```
+
+### list-sub-issues
+
+Lists all sub-issues of a parent issue.
+
+Parameters:
+- `project_id`: ID of the project
+- `parent_issue_id`: ID of the parent issue to get sub-issues for
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "parent_issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
+### create-sub-issue
+
+Creates a new sub-issue under a parent issue.
+
+Parameters:
+- `project_id`: ID of the project
+- `parent_issue_id`: ID of the parent issue
+- `name`: Title of the sub-issue
+- `description_html`: HTML description of the sub-issue (optional)
+- `priority`: Priority of the sub-issue (urgent, high, medium, low, none) (optional)
+- `state_id`: ID of the state for this sub-issue (optional)
+- `assignees`: Array of user IDs to assign to this sub-issue (optional)
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "parent_issue_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "name": "Fix validation bug",
+  "description_html": "<p>Fix the email validation issue in the login form</p>",
+  "priority": "high"
+}
+```
+
+### convert-to-sub-issue
+
+Converts an existing issue to a sub-issue of another issue.
+
+Parameters:
+- `project_id`: ID of the project
+- `issue_id`: ID of the issue to convert to sub-issue
+- `parent_issue_id`: ID of the parent issue
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw",
+  "parent_issue_id": "01def456-7890-12gh-3456-789ijklmnopq"
+}
+```
+
+### convert-to-issue
+
+Converts a sub-issue back to a regular issue (removes parent relationship).
+
+Parameters:
+- `project_id`: ID of the project
+- `issue_id`: ID of the sub-issue to convert to regular issue
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "issue_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
+}
+```
+
+### transfer-issues
+
+Transfers issues from one cycle to another.
+
+Parameters:
+- `project_id`: ID of the project
+- `cycle_id`: ID of the source cycle to transfer issues from
+- `new_cycle_id`: ID of the target cycle to transfer issues to
+
+Example:
+```json
+{
+  "project_id": "01abc123-4567-89de-0123-456789abcdef",
+  "cycle_id": "01def456-7890-12gh-3456-789ijklmnopq",
+  "new_cycle_id": "01ghi789-0123-45jk-6789-lmnopqrstuvw"
 }
 ```
 

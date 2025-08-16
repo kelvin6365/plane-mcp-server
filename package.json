@@ -1,7 +1,7 @@
 {
   "name": "@disrex/plane-mcp-server",
-  "version": "0.3.0",
-  "description": "Enhanced MCP Server for Plane with 63 comprehensive project management tools including comments, links, attachments, time tracking, and issue types",
+  "version": "0.4.0",
+  "description": "Comprehensive MCP Server for Plane with 76 project management tools including custom properties, sub-issues, relations, and transfer operations",
   "license": "MIT",
   "author": "Disrex Group",
   "homepage": "https://github.com/disrex-group/plane-mcp-server",
@@ -29,7 +29,11 @@
     "worklogs",
     "issue-types",
     "intake",
-    "links"
+    "links",
+    "custom-properties",
+    "sub-issues",
+    "relations",
+    "transfer"
   ],
   "type": "module",
   "scripts": {

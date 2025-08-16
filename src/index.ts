@@ -1523,6 +1523,381 @@ const DELETE_INTAKE_ISSUE_TOOL: Tool = {
   },
 };
 
+// Issue Property Management Tools
+const LIST_ISSUE_PROPERTIES_TOOL: Tool = {
+  name: "list-issue-properties",
+  description: "List all custom properties for a specific issue type",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      type_id: {
+        type: "string",
+        description: "ID of the issue type to get properties for",
+      },
+    },
+    required: ["project_id", "type_id"],
+  },
+};
+
+const GET_ISSUE_PROPERTY_TOOL: Tool = {
+  name: "get-issue-property",
+  description: "Get details of a specific issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      type_id: {
+        type: "string",
+        description: "ID of the issue type",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property to retrieve",
+      },
+    },
+    required: ["project_id", "type_id", "property_id"],
+  },
+};
+
+const CREATE_ISSUE_PROPERTY_TOOL: Tool = {
+  name: "create-issue-property",
+  description: "Create a new custom property for an issue type",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      type_id: {
+        type: "string",
+        description: "ID of the issue type",
+      },
+      name: {
+        type: "string",
+        description: "Internal name for the property",
+      },
+      display_name: {
+        type: "string",
+        description: "Display name for the property",
+      },
+      description: {
+        type: "string",
+        description: "Description of the property",
+      },
+      property_type: {
+        type: "string",
+        description: "Type of property (TEXT, NUMBER, DATE, OPTION, etc.)",
+        enum: ["TEXT", "NUMBER", "DATE", "OPTION", "MULTI_OPTION", "BOOLEAN"],
+      },
+      is_required: {
+        type: "boolean",
+        description: "Whether this property is required",
+      },
+      is_multi: {
+        type: "boolean",
+        description: "Whether multiple values are allowed (for OPTION type)",
+      },
+    },
+    required: ["project_id", "type_id", "name", "display_name", "property_type"],
+  },
+};
+
+const UPDATE_ISSUE_PROPERTY_TOOL: Tool = {
+  name: "update-issue-property",
+  description: "Update an existing issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      type_id: {
+        type: "string",
+        description: "ID of the issue type",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property to update",
+      },
+      name: {
+        type: "string",
+        description: "Internal name for the property",
+      },
+      display_name: {
+        type: "string",
+        description: "Display name for the property",
+      },
+      description: {
+        type: "string",
+        description: "Description of the property",
+      },
+      is_required: {
+        type: "boolean",
+        description: "Whether this property is required",
+      },
+      is_multi: {
+        type: "boolean",
+        description: "Whether multiple values are allowed",
+      },
+    },
+    required: ["project_id", "type_id", "property_id"],
+  },
+};
+
+const DELETE_ISSUE_PROPERTY_TOOL: Tool = {
+  name: "delete-issue-property",
+  description: "Delete an issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      type_id: {
+        type: "string",
+        description: "ID of the issue type",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property to delete",
+      },
+    },
+    required: ["project_id", "type_id", "property_id"],
+  },
+};
+
+const LIST_ISSUE_PROPERTY_OPTIONS_TOOL: Tool = {
+  name: "list-issue-property-options",
+  description: "List all options for a dropdown/select issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property to get options for",
+      },
+    },
+    required: ["project_id", "property_id"],
+  },
+};
+
+const CREATE_ISSUE_PROPERTY_OPTION_TOOL: Tool = {
+  name: "create-issue-property-option",
+  description: "Create a new option for a dropdown/select issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property to add option to",
+      },
+      name: {
+        type: "string",
+        description: "Name of the option",
+      },
+      description: {
+        type: "string",
+        description: "Description of the option",
+      },
+      sort_order: {
+        type: "number",
+        description: "Sort order for the option",
+      },
+      is_default: {
+        type: "boolean",
+        description: "Whether this is the default option",
+      },
+    },
+    required: ["project_id", "property_id", "name"],
+  },
+};
+
+const UPDATE_ISSUE_PROPERTY_OPTION_TOOL: Tool = {
+  name: "update-issue-property-option",
+  description: "Update an option for a dropdown/select issue property",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      property_id: {
+        type: "string",
+        description: "ID of the property",
+      },
+      option_id: {
+        type: "string",
+        description: "ID of the option to update",
+      },
+      name: {
+        type: "string",
+        description: "Name of the option",
+      },
+      description: {
+        type: "string",
+        description: "Description of the option",
+      },
+      sort_order: {
+        type: "number",
+        description: "Sort order for the option",
+      },
+      is_default: {
+        type: "boolean",
+        description: "Whether this is the default option",
+      },
+    },
+    required: ["project_id", "property_id", "option_id"],
+  },
+};
+
+// Sub-issues & Relations Tools
+const LIST_SUB_ISSUES_TOOL: Tool = {
+  name: "list-sub-issues",
+  description: "List all sub-issues of a parent issue",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      parent_issue_id: {
+        type: "string",
+        description: "ID of the parent issue to get sub-issues for",
+      },
+    },
+    required: ["project_id", "parent_issue_id"],
+  },
+};
+
+const CREATE_SUB_ISSUE_TOOL: Tool = {
+  name: "create-sub-issue",
+  description: "Create a new sub-issue under a parent issue",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      parent_issue_id: {
+        type: "string",
+        description: "ID of the parent issue",
+      },
+      name: {
+        type: "string",
+        description: "Title of the sub-issue",
+      },
+      description_html: {
+        type: "string",
+        description: "HTML description of the sub-issue",
+      },
+      priority: {
+        type: "string",
+        description: "Priority of the sub-issue (urgent, high, medium, low, none)",
+        enum: ["urgent", "high", "medium", "low", "none"],
+      },
+      state_id: {
+        type: "string",
+        description: "ID of the state for this sub-issue (optional)",
+      },
+      assignees: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+        description: "Array of user IDs to assign to this sub-issue (optional)",
+      },
+    },
+    required: ["project_id", "parent_issue_id", "name"],
+  },
+};
+
+const CONVERT_TO_SUB_ISSUE_TOOL: Tool = {
+  name: "convert-to-sub-issue",
+  description: "Convert an existing issue to a sub-issue of another issue",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      issue_id: {
+        type: "string",
+        description: "ID of the issue to convert to sub-issue",
+      },
+      parent_issue_id: {
+        type: "string",
+        description: "ID of the parent issue",
+      },
+    },
+    required: ["project_id", "issue_id", "parent_issue_id"],
+  },
+};
+
+const CONVERT_TO_ISSUE_TOOL: Tool = {
+  name: "convert-to-issue",
+  description: "Convert a sub-issue back to a regular issue (remove parent relationship)",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      issue_id: {
+        type: "string",
+        description: "ID of the sub-issue to convert to regular issue",
+      },
+    },
+    required: ["project_id", "issue_id"],
+  },
+};
+
+// Issue Transfer Operations Tool
+const TRANSFER_ISSUES_TOOL: Tool = {
+  name: "transfer-issues",
+  description: "Transfer issues from one cycle to another",
+  inputSchema: {
+    type: "object",
+    properties: {
+      project_id: {
+        type: "string",
+        description: "ID of the project",
+      },
+      cycle_id: {
+        type: "string",
+        description: "ID of the source cycle to transfer issues from",
+      },
+      new_cycle_id: {
+        type: "string",
+        description: "ID of the target cycle to transfer issues to",
+      },
+    },
+    required: ["project_id", "cycle_id", "new_cycle_id"],
+  },
+};
+
 /**
  * Calls the Plane API with appropriate headers and error handling
  * @param endpoint - API endpoint to call (without base URL)
@@ -1686,6 +2061,25 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     CREATE_INTAKE_ISSUE_TOOL,
     UPDATE_INTAKE_ISSUE_TOOL,
     DELETE_INTAKE_ISSUE_TOOL,
+    
+    // Issue Property Management
+    LIST_ISSUE_PROPERTIES_TOOL,
+    GET_ISSUE_PROPERTY_TOOL,
+    CREATE_ISSUE_PROPERTY_TOOL,
+    UPDATE_ISSUE_PROPERTY_TOOL,
+    DELETE_ISSUE_PROPERTY_TOOL,
+    LIST_ISSUE_PROPERTY_OPTIONS_TOOL,
+    CREATE_ISSUE_PROPERTY_OPTION_TOOL,
+    UPDATE_ISSUE_PROPERTY_OPTION_TOOL,
+    
+    // Sub-issues & Relations
+    LIST_SUB_ISSUES_TOOL,
+    CREATE_SUB_ISSUE_TOOL,
+    CONVERT_TO_SUB_ISSUE_TOOL,
+    CONVERT_TO_ISSUE_TOOL,
+    
+    // Issue Transfer Operations
+    TRANSFER_ISSUES_TOOL,
   ],
 }));
 
@@ -2570,6 +2964,169 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         const { project_id, issue_id } = args;
         const result = await callPlaneAPI(`/projects/${project_id}/intake-issues/${issue_id}/`, "DELETE");
+        return {
+          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          isError: false,
+        };
+      }
+
+      // Issue Property Management Cases
+      case "list-issue-properties": {
+        if (!args || typeof args.project_id !== "string" || typeof args.type_id !== "string") {
+          throw new Error("Project ID and Type ID are required");
+        }
+        const { project_id, type_id } = args;
+        const properties = await callPlaneAPI(`/projects/${project_id}/issue-types/${type_id}/issue-properties/`, "GET");
+        return {
+          content: [{ type: "text", text: JSON.stringify(properties, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "get-issue-property": {
+        if (!args || typeof args.project_id !== "string" || typeof args.type_id !== "string" || typeof args.property_id !== "string") {
+          throw new Error("Project ID, Type ID, and Property ID are required");
+        }
+        const { project_id, type_id, property_id } = args;
+        const property = await callPlaneAPI(`/projects/${project_id}/issue-types/${type_id}/issue-properties/${property_id}/`, "GET");
+        return {
+          content: [{ type: "text", text: JSON.stringify(property, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "create-issue-property": {
+        if (!args || typeof args.project_id !== "string" || typeof args.type_id !== "string") {
+          throw new Error("Project ID and Type ID are required");
+        }
+        const { project_id, type_id, ...propertyData } = args;
+        const property = await callPlaneAPI(`/projects/${project_id}/issue-types/${type_id}/issue-properties/`, "POST", propertyData);
+        return {
+          content: [{ type: "text", text: JSON.stringify(property, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "update-issue-property": {
+        if (!args || typeof args.project_id !== "string" || typeof args.type_id !== "string" || typeof args.property_id !== "string") {
+          throw new Error("Project ID, Type ID, and Property ID are required");
+        }
+        const { project_id, type_id, property_id, ...updateData } = args;
+        const updatedProperty = await callPlaneAPI(`/projects/${project_id}/issue-types/${type_id}/issue-properties/${property_id}/`, "PATCH", updateData);
+        return {
+          content: [{ type: "text", text: JSON.stringify(updatedProperty, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "delete-issue-property": {
+        if (!args || typeof args.project_id !== "string" || typeof args.type_id !== "string" || typeof args.property_id !== "string") {
+          throw new Error("Project ID, Type ID, and Property ID are required");
+        }
+        const { project_id, type_id, property_id } = args;
+        const result = await callPlaneAPI(`/projects/${project_id}/issue-types/${type_id}/issue-properties/${property_id}/`, "DELETE");
+        return {
+          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "list-issue-property-options": {
+        if (!args || typeof args.project_id !== "string" || typeof args.property_id !== "string") {
+          throw new Error("Project ID and Property ID are required");
+        }
+        const { project_id, property_id } = args;
+        const options = await callPlaneAPI(`/projects/${project_id}/issue-properties/${property_id}/options/`, "GET");
+        return {
+          content: [{ type: "text", text: JSON.stringify(options, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "create-issue-property-option": {
+        if (!args || typeof args.project_id !== "string" || typeof args.property_id !== "string") {
+          throw new Error("Project ID and Property ID are required");
+        }
+        const { project_id, property_id, ...optionData } = args;
+        const option = await callPlaneAPI(`/projects/${project_id}/issue-properties/${property_id}/options/`, "POST", optionData);
+        return {
+          content: [{ type: "text", text: JSON.stringify(option, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "update-issue-property-option": {
+        if (!args || typeof args.project_id !== "string" || typeof args.property_id !== "string" || typeof args.option_id !== "string") {
+          throw new Error("Project ID, Property ID, and Option ID are required");
+        }
+        const { project_id, property_id, option_id, ...updateData } = args;
+        const updatedOption = await callPlaneAPI(`/projects/${project_id}/issue-properties/${property_id}/options/${option_id}/`, "PATCH", updateData);
+        return {
+          content: [{ type: "text", text: JSON.stringify(updatedOption, null, 2) }],
+          isError: false,
+        };
+      }
+
+      // Sub-issues & Relations Cases
+      case "list-sub-issues": {
+        if (!args || typeof args.project_id !== "string" || typeof args.parent_issue_id !== "string") {
+          throw new Error("Project ID and Parent Issue ID are required");
+        }
+        const { project_id, parent_issue_id } = args;
+        const issues = await callPlaneAPI(`/projects/${project_id}/issues/?parent=${parent_issue_id}`, "GET");
+        return {
+          content: [{ type: "text", text: JSON.stringify(issues, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "create-sub-issue": {
+        if (!args || typeof args.project_id !== "string" || typeof args.parent_issue_id !== "string") {
+          throw new Error("Project ID and Parent Issue ID are required");
+        }
+        const { project_id, parent_issue_id, ...issueData } = args;
+        const subIssueData = {
+          ...issueData,
+          parent: parent_issue_id,
+        };
+        const subIssue = await callPlaneAPI(`/projects/${project_id}/issues/`, "POST", subIssueData);
+        return {
+          content: [{ type: "text", text: JSON.stringify(subIssue, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "convert-to-sub-issue": {
+        if (!args || typeof args.project_id !== "string" || typeof args.issue_id !== "string" || typeof args.parent_issue_id !== "string") {
+          throw new Error("Project ID, Issue ID, and Parent Issue ID are required");
+        }
+        const { project_id, issue_id, parent_issue_id } = args;
+        const updatedIssue = await callPlaneAPI(`/projects/${project_id}/issues/${issue_id}/`, "PATCH", { parent: parent_issue_id });
+        return {
+          content: [{ type: "text", text: JSON.stringify(updatedIssue, null, 2) }],
+          isError: false,
+        };
+      }
+
+      case "convert-to-issue": {
+        if (!args || typeof args.project_id !== "string" || typeof args.issue_id !== "string") {
+          throw new Error("Project ID and Issue ID are required");
+        }
+        const { project_id, issue_id } = args;
+        const updatedIssue = await callPlaneAPI(`/projects/${project_id}/issues/${issue_id}/`, "PATCH", { parent: null });
+        return {
+          content: [{ type: "text", text: JSON.stringify(updatedIssue, null, 2) }],
+          isError: false,
+        };
+      }
+
+      // Issue Transfer Operations Cases
+      case "transfer-issues": {
+        if (!args || typeof args.project_id !== "string" || typeof args.cycle_id !== "string" || typeof args.new_cycle_id !== "string") {
+          throw new Error("Project ID, Cycle ID, and New Cycle ID are required");
+        }
+        const { project_id, cycle_id, new_cycle_id } = args;
+        const result = await callPlaneAPI(`/projects/${project_id}/cycles/${cycle_id}/transfer-issues/`, "POST", { new_cycle_id });
         return {
           content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
           isError: false,
