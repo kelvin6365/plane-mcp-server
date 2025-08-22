@@ -2,6 +2,7 @@
 
 # Plane MCP Server
 
+[![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/kelvin6365/plane-mcp-server)](https://archestra.ai/mcp-catalog/kelvin6365__plane-mcp-server)
 [![smithery badge](https://smithery.ai/badge/@kelvin6365/plane-mcp-server)](https://smithery.ai/server/@kelvin6365/plane-mcp-server)
 
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kelvin6365-plane-mcp-server-badge.png)](https://mseep.ai/app/kelvin6365-plane-mcp-server)
