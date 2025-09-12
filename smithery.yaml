@@ -15,6 +15,9 @@ startCommand:
       planeWorkspaceSlug:
         type: string
         description: Your Plane.so workspace slug identifier.
+      planeHost:
+        type: string
+        description: Yout Plane.so custom host.
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
@@ -24,8 +27,10 @@ startCommand:
       env: {
         PLANE_API_KEY: config.planeApiKey,
         PLANE_WORKSPACE_SLUG: config.planeWorkspaceSlug
+        PLANE_HOST: config.planeHost
       }
     })
   exampleConfig:
     planeApiKey: example_plane_api_key_12345
     planeWorkspaceSlug: example_workspace_slug
+    planeHost: https://your-plane.com
