@@ -1,11 +1,10 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kelvin6365-plane-mcp-server-badge.png)](https://mseep.ai/app/kelvin6365-plane-mcp-server)
-
 # Plane MCP Server
 
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/kelvin6365/plane-mcp-server)](https://archestra.ai/mcp-catalog/kelvin6365__plane-mcp-server)
 [![smithery badge](https://smithery.ai/badge/@kelvin6365/plane-mcp-server)](https://smithery.ai/server/@kelvin6365/plane-mcp-server)
 
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kelvin6365-plane-mcp-server-badge.png)](https://mseep.ai/app/kelvin6365-plane-mcp-server)
+[![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/0af9cef9-605a-411c-98a2-cc7156ab1e7d)
 
 A Model Context Protocol (MCP) server that enables LLMs to interact with [Plane.so](https://plane.so), allowing them to manage projects and issues through Plane's API. Using this server, LLMs like Claude can directly interact with your project management workflows while maintaining user control and security.
 
