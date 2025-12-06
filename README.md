@@ -91,7 +91,8 @@ npm run build
       "args": ["path/to/plane-mcp-server/build/index.js"],
       "env": {
         "PLANE_API_KEY": "your_plane_api_key_here",
-        "PLANE_WORKSPACE_SLUG": "your_workspace_slug_here"
+        "PLANE_WORKSPACE_SLUG": "your_workspace_slug_here",
+        "PLANE_HOST": "optional"
       }
     }
   }
