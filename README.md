@@ -21,6 +21,10 @@ A Model Context Protocol (MCP) server that enables LLMs to interact with [Plane.
 - Get detailed information about specific issues
 - Update existing issues with new information
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/kelvin6365-plane-mcp-server).
+
 ## Prerequisites
 
 - Node.js 22.x or higher
